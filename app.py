@@ -20,7 +20,7 @@ def secret():
 	return "this is a secret"
 
 @app.route('/myticker/<symbol>')
-def myticker():
+def myticker(symbol):
 	return get_stock_ticker_data(symbol)
 
 if __name__ == '__main__':
