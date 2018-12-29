@@ -24,6 +24,11 @@ def ticker(symbol):
 	last30_str = " ".join(list(map(lambda x: str(x), last30)))
 	return render_template('ticker.html', ticker=symbol, high=high, low=low, last30=last30)
 
+@app.route('/ticker_input')
+def ticker_input():
+	return render_template('ticker_input.html')
+
+
 if __name__ == '__main__':
   app.run(port=33507)
 
