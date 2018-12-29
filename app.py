@@ -43,7 +43,7 @@ def plot():
     p.line(x, y, legend="Temp.", line_width=2)
 
     script, div = bokeh.embed.components(p)
-    return render_template("bokeh_graph.html", script=script, div=div)      
+    return render_template("bokeh_graph.html", bokeh_script=script, bokeh_div=div)      
 
 
 if __name__ == '__main__':
