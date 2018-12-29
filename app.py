@@ -38,10 +38,10 @@ def ticker_input():
 @app.route('/plot')
 def plot():
     df = quandl.get_stock_ticker_df('aapl') 
-    x =  list(df['Close'].head(30))
-    y =  list(pd.to_datetime(df['Date'].head(30)))
+    y =  list(df['Close'].head(30))
+    x =  list(pd.to_datetime(df['Date'].head(30)))
 
-    p = bokeh.plotting.figure(title="closing prices", x_axis_label='x', y_axis_label='y', y_axis_type='datetime')
+    p = bokeh.plotting.figure(title="closing prices", x_axis_label='date', y_axis_label='price', x_axis_type='datetime')
     p.line(x, y, legend="Temp.", line_width=2)
 
     script, html = bokeh.embed.components(p)
