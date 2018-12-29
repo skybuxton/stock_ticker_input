@@ -20,9 +20,12 @@ def about():
 def secret():
 	return "this is a secret"
 
-@app.route('/myticker/<symbol>')
-def myticker(symbol):
-	return get_stock_ticker_data(symbol)
+@app.route('/ticker/<symbol>')
+def ticker(symbol):
+	high = quandl.get_high(symbol)
+	low  = quandl.get_low(symbol)
+	return render_template('ticker.html', ticker=symbol, high=high, low=low)
+	# return get_stock_ticker_data(symbol)
 
 if __name__ == '__main__':
   app.run(port=33507)
