@@ -25,8 +25,8 @@ def secret():
 def ticker():
     symbol = request.args["symbol"]
 
-    high = quandl.get_high(symbol)
-    low  = quandl.get_low(symbol)
+    month = quandl.get_month(symbol)
+    stock_ticker_symbol  = quandl.get_stock_ticker_symbol(symbol)
     last30 = quandl.get_close_price_data_1_mo(symbol)
     last30_str = " ".join(list(map(lambda x: str(x), last30)))
     return render_template('ticker.html', ticker=symbol, high=high, low=low, last30=last30)
@@ -37,11 +37,11 @@ def ticker_input():
 
 @app.route('/plot')
 def plot():
-    df = quandl.get_stock_ticker_df('aapl') 
+    df = quandl.get_stock_ticker_df('stock_ticker_symbol') 
     y =  list(df['Close'].head(30))
     x =  list(pd.to_datetime(df['Date'].head(30)))
 
-    p = bokeh.plotting.figure(title="closing prices", x_axis_label='date', y_axis_label='price', x_axis_type='datetime')
+    p = bokeh.plotting.figure(title="Stock Closing Price", x_axis_label='Date', y_axis_label='Price', x _axis_type='datetime')
     p.line(x, y, legend="Temp.", line_width=2)
 
     script, html = bokeh.embed.components(p)
