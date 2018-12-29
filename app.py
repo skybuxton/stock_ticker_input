@@ -16,8 +16,10 @@ def about():
 def secret():
 	return "this is a secret"
 
-@app.route('/ticker/<symbol>')
-def ticker(symbol):
+@app.route('/ticker')
+def ticker():
+	symbol = request.args["symbol"]
+
 	high = quandl.get_high(symbol)
 	low  = quandl.get_low(symbol)
 	last30 = quandl.get_close_price_data_1_mo(symbol)
