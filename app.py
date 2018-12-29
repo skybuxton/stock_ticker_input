@@ -22,7 +22,7 @@ def ticker(symbol):
 	low  = quandl.get_low(symbol)
 	last30 = quandl.get_close_price_data_1_mo(symbol)
 	last30_str = " ".join(list(map(lambda x: str(x), last30)))
-	return render_template('ticker.html', ticker=symbol, high=high, low=low, last30=last30_str)
+	return render_template('ticker.html', ticker=symbol, high=high, low=low, last30=last30)
 
 if __name__ == '__main__':
   app.run(port=33507)
