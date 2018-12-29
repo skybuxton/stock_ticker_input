@@ -29,3 +29,14 @@ def get_close_price_data_1_mo(ticker):
     df = get_stock_ticker_df(ticker)
     return list(df['Close'].head(30))
 
+def get_open_price_data_1_mo(ticker):
+    df = get_stock_ticker_df(ticker)
+    return list(df['Open'].head(30))
+
+def get_adj_close_price_data_1_mo(ticker):
+    df = get_stock_ticker_df(ticker)
+    return list(df['adj_close'].head(30))
+
+def get_adj_open_price_data_1_mo(ticker):
+    df = get_stock_ticker_df(ticker)
+    return list(df['adj_open'].head(30))
