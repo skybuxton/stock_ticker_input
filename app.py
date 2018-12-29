@@ -36,14 +36,15 @@ def ticker_input():
 
 @app.route('/plot')
 def plot():
-    x = [1, 2, 3, 4, 5]
-    y = [6, 7, 2, 4, 5]
+    df = quandl.get_stock_ticker_df('aapl') 
+    x =  list(df['Close'].head(30))
+    y =  list(df['Date'].head(30))
 
     p = bokeh.plotting.figure(title="simple line example", x_axis_label='x', y_axis_label='y')
     p.line(x, y, legend="Temp.", line_width=2)
 
-    script, div = bokeh.embed.components(p)
-    return render_template("bokeh_graph.html", bokeh_script=script, bokeh_div=div)      
+    script, html = bokeh.embed.components(p)
+    return render_template("bokeh_graph.html", bokeh_script=script, bokeh_div=html)      
 
 
 if __name__ == '__main__':
