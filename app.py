@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # functions
 def get_stock_ticker_data(symbol):
-	return "my max price %s" % quandl.get_high(symbol)
+	return "my max price: %s\n\nmy min price:%s" % (quandl.get_high(symbol), quandl.get_low(symbol))
 
 # Routes
 @app.route('/')
