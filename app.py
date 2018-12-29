@@ -24,13 +24,13 @@ def secret():
 @app.route('/ticker')
 def ticker():
     symbol = request.args["symbol"]
-    
+
     df = quandl.get_stock_ticker_df(symbol) 
     y =  list(df['Close'].head(30))
     x =  list(pd.to_datetime(df['Date'].head(30)))
 
-    p = bokeh.plotting.figure(title="closing prices", x_axis_label='date', y_axis_label='price', x_axis_type='datetime')
-    p.line(x, y, legend="Temp.", line_width=2)
+    p = bokeh.plotting.figure(title="Closing Prices of "+symbol, x_axis_label='Date', y_axis_label='Price', x_axis_type='datetime')
+    p.line(x, y, legend="Closing Price.", line_width=2)
 
     script, html = bokeh.embed.components(p)
     return render_template("bokeh_graph.html", bokeh_script=script, bokeh_div=html)      
