@@ -25,3 +25,7 @@ def get_low(ticker):
     df = get_stock_ticker_df(ticker)
     return df['High'].min()
 
+def get_close_price_data_1_mo(ticker):
+    df = get_stock_ticker_df(ticker)
+    return list(df['Close'].head(30))
+

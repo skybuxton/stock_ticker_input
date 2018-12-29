@@ -20,7 +20,8 @@ def secret():
 def ticker(symbol):
 	high = quandl.get_high(symbol)
 	low  = quandl.get_low(symbol)
-	return render_template('ticker.html', ticker=symbol, high=high, low=low)
+	last30 = quandl.get_close_price_data_1_mo(symbol)
+	return render_template('ticker.html', ticker=symbol, high=high, low=low, last30=last30)
 
 if __name__ == '__main__':
   app.run(port=33507)
