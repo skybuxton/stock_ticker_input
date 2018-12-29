@@ -20,8 +20,8 @@
           <form action="/ticker" method="GET">
             Stock Ticker Symbol:<br>
             <input type="text" name="symbol" value=""><br>
-            <select>
-              <option value="Month">Month</option>
+            <select name="month">
+              <option>Month</option>
               <option value="January">January</option>
               <option value="February">February</option>
               <option value="March">March</option>
@@ -35,7 +35,8 @@
               <option value="November">November</option>
               <option value="December">December</option>
             </select>
-            <input type="submit" value="Submit">
+            <br/>
+            <input type="submit" value="Submit"/>
           </form>
         </div>
       </div>
