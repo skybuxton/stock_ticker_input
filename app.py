@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, redirect
+import quandl
 
 app = Flask(__name__)
 
 # functions
 def get_stock_ticker_data(symbol):
-	return "my symbol is %s" % symbol
+	return "my max price %s" % quandl.get_high(symbol)
 
 # Routes
 @app.route('/')
@@ -25,3 +26,4 @@ def myticker(symbol):
 
 if __name__ == '__main__':
   app.run(port=33507)
+
