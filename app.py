@@ -24,10 +24,26 @@ def secret():
 @app.route('/ticker')
 def ticker():
     symbol = request.args["symbol"]
+    month = request.args["month"]
+    if month:
+        month = int(month)
 
-    df = quandl.get_stock_ticker_df(symbol) 
-    y =  list(df['Close'].head(30))
-    x =  list(pd.to_datetime(df['Date'].head(30)))
+    # convert date to pandas 
+    df = quandl.get_stock_ticker_df(symbol)
+    df['Date'] = pd.to_datetime(df['Date'])
+
+    # filter by year
+    year = 2018
+    year_mask = df['Date'].map(lambda x: x.year) == year
+    df = df[year_mask]
+
+    # filter by month
+    if month:
+        month_mask = df['Date'].map(lambda x: x.month) == month
+        df = df[month_mask]
+
+    y =  list(df['Close'])
+    x =  list(df['Date'])
 
     p = bokeh.plotting.figure(title="Closing Prices of "+symbol, x_axis_label='Date', y_axis_label='Price', x_axis_type='datetime')
     p.line(x, y, legend="Closing Price.", line_width=2)
