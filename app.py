@@ -25,17 +25,18 @@ def secret():
 def ticker():
     symbol = request.args["symbol"]
     month = request.args["month"]
-    if month:
-        month = int(month)
+    year = request.args["year"]
+    month = int(month)
+    year = int(year)
 
     # convert date to pandas 
     df = quandl.get_stock_ticker_df(symbol)
     df['Date'] = pd.to_datetime(df['Date'])
 
     # filter by year
-    year = 2018
-    year_mask = df['Date'].map(lambda x: x.year) == year
-    df = df[year_mask]
+    if year:
+        year_mask = df['Date'].map(lambda x: x.year) == year
+        df = df[year_mask]
 
     # filter by month
     if month:
